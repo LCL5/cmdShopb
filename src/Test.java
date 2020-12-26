@@ -13,9 +13,12 @@ public class Test{
         String username=sc.next();
 
         System.out.println("please input password:");//提示用户输入密码
-        String psaaword=sc.next();
+        String password=sc.next();
 
         for (User user:users){
+            if(username.equals(user.getUsername()) && password.equals(user.getPassword())){
+                System.out.println("登录成功");
+            }
 
         }
     }
