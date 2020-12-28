@@ -7,6 +7,7 @@ public class Test {
         while (bool) {
 
             java.io.InputStream in = Class.forName("Test").getResourceAsStream("/users.xlsx");
+            java.io.InputStream inProduct = Class.forName("Test").getResourceAsStream("/products.xlsx");
             ReadUserExcel readExcel = new ReadUserExcel();
             User users[] = readExcel.readExcel(in);
 
@@ -18,9 +19,22 @@ public class Test {
             String password = sc.next();
 
             for (int i=0;i<users.length;i++) {
-                if (username.equals(users[i].getUsername()) && password.equals(users[i].getPassword())) {
+                if (username.equals(users[i].getUsername().trim()) && password.equals(users[i].getPassword().trim())) {
                     System.out.println("登录成功");
                     bool = false;
+                    ReadProductExcel readProductExcel=new ReadProductExcel();
+                    Product products[]=readProductExcel.readExcel(inProduct);
+                    for (Product product:products) {
+                        System.out.print(product.getId());
+                        System.out.print("\t" + product.getName());
+                        System.out.print("\t" + product.getPrice());
+                        System.out.println("\t" + product.getDecs());
+                    }
+                    System.out.println("请输入商品ID吧该商品加入购物车");
+                    String Id=sc.next();
+
+                    Product carts[]=new Product[3];
+
                     break;
                 } else {
                     System.out.println("登录失败");
