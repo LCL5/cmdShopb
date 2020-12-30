@@ -30,10 +30,27 @@ public class Test {
                         System.out.print("\t" + product.getPrice());
                         System.out.println("\t" + product.getDecs());
                     }
+                    int count=0;
+                    Product carts[]=new Product[3];
                     System.out.println("请输入商品ID吧该商品加入购物车");
                     String Id=sc.next();
+                    ReadUserExcel readUserExcel1=new ReadUserExcel();
+                    inProduct=null;
+                    inProduct = Class.forName("Test").getResourceAsStream("/products.xlsx");
+                    Product product=readProductExcel.getProductById(Id,inProduct);
+                    if(product!=null){
 
-                    Product carts[]=new Product[3];
+                    }
+                    else if(choose==2){
+                        for (Product carts:products) {
+                            System.out.print(carts.getId());
+                            System.out.print("\t" + carts.getName());
+                            System.out.print("\t" + carts.getPrice());
+                            System.out.println("\t" + carts.getDecs());
+
+                    }
+
+
 
                     break;
                 } else {
