@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Test {
 
     static Product carts[]=new Product[3];//创建购物车
+    static Scanner sc=new Scanner(System.in);
     static Scanner choose = new Scanner(System.in);
     public static void main(String[] args) throws ClassNotFoundException {
 
@@ -26,15 +27,7 @@ public class Test {
                 if (username.equals(users[i].getUsername().trim()) && password.equals(users[i].getPassword().trim())) {
 
                     bool = false;
-                    //登录成功显示商品和商品菜单
-                    ReadProductExcel readProductExcel = new ReadProductExcel();
-                    Product products[] = readProductExcel.readExcel(inProduct);
-                    for (Product product : products) {
-                        System.out.print(product.getId());
-                        System.out.print("\t" + product.getName());
-                        System.out.print("\t" + product.getPrice());
-                        System.out.println("\t" + product.getDecs());
-                    }
+                    //登录成功显示商品菜单
 
 
                     while (true) {
@@ -51,23 +44,30 @@ public class Test {
                             viewcarts();
 
                         } else if (choose == 3) {
+                            Order order=new Order();
+                            order.setUser(users[i]);
+                            order.setProducts(carts);
+                            /*
+                            统计购物车中每种商品的数量
+                            1、数组的遍历
+                            2、相同加一
+                             */
 
                         } else if (choose == 4) {
                             break;
                         }
                     }
-                }
 
 
-                break;
-            } else {
+
+                break;}
+             else{
                     System.out.println("登录失败");
                 }
-
+            }
             }
         }
-    }
-    static void shopping(InputStream inProduct) throws ClassNotFoundException {
+    public static void shopping(InputStream inProduct) throws ClassNotFoundException {
         int count=0;
         ReadProductExcel readProductExcel=new ReadProductExcel();
         Product products[]=readProductExcel.readExcel(inProduct);
@@ -88,7 +88,7 @@ public class Test {
         }
 
     }
-    static void viewcarts(){
+    public static void viewcarts(){
         System.out.println("当前购物车商品如下");
         for (Product p : carts) {
             if (p != null) {
@@ -97,5 +97,7 @@ public class Test {
                 System.out.print("\t" + p.getPrice());
                 System.out.println("\t" + p.getDecs());
             }
+    }
+
     }
 }

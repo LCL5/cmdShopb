@@ -3,7 +3,7 @@ import java.util.Date;
 public class Order {
 
     private User user;
-    private Product product;
+    private Product products[];
     private int ammount;
     private float productPrice;
     private float finalpay;
@@ -17,12 +17,12 @@ public class Order {
         this.user = user;
     }
 
-    public Product getProduct() {
-        return product;
+    public Product[] getProducts() {
+        return products;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProducts(Product[] products) {
+        this.products = products;
     }
 
     public int getAmmount() {
